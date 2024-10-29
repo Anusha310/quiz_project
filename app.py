@@ -69,3 +69,17 @@ def generate_qr():
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")
+from flask import Flask, send_file
+import qrcode
+
+app = Flask(__name__)
+
+# Add this route for generating the QR code
+@app.route('/generate_qr')
+@app.route('/generate_qr')
+def generate_qr():
+    # Replace with your Render deployment URL for the quiz endpoint
+    qr_data = 'https://srv-csghgsdumphs73b5ol2g.onrender.com/quiz'
+    qr_img = qrcode.make(qr_data)
+    qr_img.save('static/qrcodes/quiz_qr.png')
+    return "QR code generated!"
